@@ -12,11 +12,16 @@ import os.path
 import time
 import uuid
 from dateutil.tz import tzoffset
-from mega import Mega
-from mega_drive import *
 
 settings_file_path = 'cache.txt'
-user_name, password = get_insta_login()
+
+user_name = 0 
+password = 0
+
+def init(u_name, pas):
+    global user_name, password
+    user_name = u_name
+    password = pas
 
 class MyWeb_client(Web_client):
 
@@ -177,7 +182,7 @@ def user_data(user):
 
     return info
 
-def user_stories(username, root_dir):
+def user_stories(username):
     api = get_api()
     try:
         id = username_to_id(username)
@@ -191,8 +196,8 @@ def user_stories(username, root_dir):
     # print(feed)
     # print(type(feed))
     # return
-    with open('data.json', 'w') as fp:
-        json.dump(feed, fp,  indent=4)
+    # with open('data.json', 'w') as fp:
+    #     json.dump(feed, fp,  indent=4)
         
     isfound = False
     if feed['reel']:
@@ -238,15 +243,17 @@ def user_stories(username, root_dir):
                     name += f'_@{u["user"]["username"]}'
             print(name)
 
-            if not(os.path.exists(f'{root_dir}/{username}')):
-                os.mkdir(f'{root_dir}/{username}')
-            if not(os.path.exists(f'{root_dir}/{username}/stories')):
-                os.mkdir(f'{root_dir}/{username}/stories')
+            if not(os.path.exists(username)):
+                os.mkdir(username)
+            # if not(os.path.exists(f'{username}/stories')):
+                # os.mkdir(f'{username}/stories')
 
             if list_video:
-                save_path = f'{root_dir}/{username}/stories/{name}.mp4'
+                # save_path = f'{username}/stories/{name}.mp4'
+                save_path = f'{username}/{name}.mp4'
             else:
-                save_path = f'{root_dir}/{username}/stories/{name}.jpg'
+                # save_path = f'{username}/stories/{name}.jpg'
+                save_path = f'{username}/{name}.jpg'
 
             if not os.path.exists(save_path):
 

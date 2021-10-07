@@ -4,19 +4,34 @@ import insta
 import os
 import shutil
 from datetime import datetime
-import zipfile
 
-local_folder = datetime.now().strftime("%d/%m/%Y %H:%M:%S").replace("/", "-")
-os.mkdir(local_folder)
-insta_username = md.get_insta_public_files()
+loginCred = ['Ch_Insta_Cred.txt','Mo_Insta_Cred.txt', 'Sp_Insta_Cred.txt']
+insta_username_files = ['Ch.txt', 'Mo.txt', 'Sp.txt']
 
-for p_name in insta_username:
-    insta.user_stories(p_name, local_folder)
-    
-zf = zipfile.ZipFile(f"{local_folder}.zip", "w")
-for root, dirs, files in os.walk(local_folder):
-    for file in files:
-        zf.write(os.path.join(root, file))
+for cred, u_names in zip(loginCred, insta_username_files):
+    root_folder_name = f'{u_names[:2]}-{datetime.now().strftime("%d/%m/%Y %H:%M:%S").replace("/", "-")}'
+    insta_login, insta_password = md.download_cred_file_extract(cred)
+    insta.init(insta_login, insta_password)
+    insta_usernames = md.download_insta_username_file_extract(u_names)
+    for names in insta_usernames[:6]:
+        insta.user_stories(names)
+        if os.path.exists(names):
+            md.upload_folder(root_folder_name, names)
+    os.remove('cache.txt')
+    break
 
-shutil.rmtree(f'{local_folder}')
-md.upload(local_folder)
+
+
+
+
+
+
+# local_folder = datetime.now().strftime("%d/%m/%Y %H:%M:%S").replace("/", "-")
+# os.mkdir(local_folder)
+# insta_username = md.get_insta_public_files()
+# for p_name in insta_username[:5]:
+#     insta.user_stories(p_name, local_folder)
+  
+# shutil.make_archive("Ch_"+local_folder,'zip',local_folder)  
+# shutil.rmtree(f'{local_folder}')
+# md.upload("Ch_"+local_folder)
