@@ -107,7 +107,7 @@ def get_web_api():
 
 def get_api():
     try:
-
+        
         settings_file = settings_file_path
         if not os.path.isfile(settings_file):
             # settings file does not exist
