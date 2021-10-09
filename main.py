@@ -15,7 +15,7 @@ for cred, u_names in zip(loginCred, insta_username_files):
     insta.init(insta_login, insta_password)
     md.init_root_dir(root_folder_name)
     insta_usernames = md.download_insta_username_file_extract(u_names)
-    for names in insta_usernames[:10]:
+    for names in insta_usernames:
         insta.user_stories(names)
         if os.path.exists(names):
             md.upload_folder(root_folder_name, names)
