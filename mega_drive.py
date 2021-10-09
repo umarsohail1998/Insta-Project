@@ -17,7 +17,7 @@ def init_root_dir(foldername):
 def download(file_name):
     global m
     file = m.find(file_name)
-    m.download(file)
+    m.download(file, os.getcwd())
 
 def download_cred_file_extract(file_name):
     download(file_name)
