@@ -18,15 +18,16 @@ for cred, u_names in zip(loginCred, insta_username_files):
     insta.init(insta_login, insta_password)
     md.init_root_dir(root_folder_name)
     insta_usernames = md.download_insta_username_file_extract(u_names)
-    for names in insta_usernames[:10]:
-        insta.user_stories(names)
-        if os.path.exists(names):
-            md.upload_folder(root_folder_name, names)
+    try:
+        for names in insta_usernames[:10]:
+            insta.user_stories(names)
+            if os.path.exists(names):
+                md.upload_folder(root_folder_name, names)
+    except Exception as e:
+        print(e)
     if file_exists('cache.txt'):
         os.remove('cache.txt')
     # break
-
-
 
 # local_folder = datetime.now().strftime("%d/%m/%Y %H:%M:%S").replace("/", "-")
 # os.mkdir(local_folder)
