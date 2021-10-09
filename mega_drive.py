@@ -21,7 +21,7 @@ def download(file_name):
 
 def download_cred_file_extract(file_name):
     download(file_name)
-    data = open(file_name,'r').readlines()
+    data = open(f'{os.getcwd()}/{file_name}','r').readlines()
     insta_username, insta_password = data[0].strip(), data[1].strip()
     os.remove(file_name)
     return insta_username, insta_password
