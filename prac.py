@@ -5,5 +5,5 @@
 
 # import mega_drive as md
 # md.upload("07-10-2021 21:34:47")
-import os
-print(f'{os.getcwd()}/Umar')
+# import os
+# print(f'{os.getcwd()}/Umar')
