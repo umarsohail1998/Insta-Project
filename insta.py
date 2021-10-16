@@ -196,8 +196,8 @@ def user_stories(username):
     # print(feed)
     # print(type(feed))
     # return
-    # with open('data.json', 'w') as fp:
-    #     json.dump(feed, fp,  indent=4)
+    with open('data.json', 'w') as fp:
+        json.dump(feed, fp,  indent=4)
         
     isfound = False
     if feed['reel']:
