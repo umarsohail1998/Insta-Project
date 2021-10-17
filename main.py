@@ -1,3 +1,4 @@
+from io import BufferedRWPair
 import mega_drive as md
 import insta
 from os.path import exists as file_exists

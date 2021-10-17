@@ -196,8 +196,8 @@ def user_stories(username):
     # print(feed)
     # print(type(feed))
     # return
-    with open('data.json', 'w') as fp:
-        json.dump(feed, fp,  indent=4)
+    # with open('data.json', 'w') as fp:
+    #     json.dump(feed, fp,  indent=4)
         
     isfound = False
     if feed['reel']:
@@ -237,7 +237,13 @@ def user_stories(username):
 
             name += f'_{value.strftime("%d-%m-%Y_%H-%M-%S")}'
             if 'location' in reel.keys():
-                name += "_#" + reel["location"]["short_name"].replace(' ', '_')
+                # name += "_#" + reel["location"]["short_name"].replace(' ', '_')
+                name += "_#" + reel["location"]["name"]
+                
+                with open('data.json', 'w') as fp:
+                    json.dump(feed, fp,  indent=4)
+                    # raise "Error Found"
+
             if 'reel_mentions' in reel:
                 for u in reel['reel_mentions']:
                     name += f'_@{u["user"]["username"]}'
