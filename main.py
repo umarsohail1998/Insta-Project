@@ -6,8 +6,8 @@ import os
 import shutil
 from datetime import datetime
 
-loginCred = ['Ch_Insta_Cred.txt','Mo_Insta_Cred.txt', 'Sp_Insta_Cred.txt']
-insta_username_files = ['Ch.txt', 'Mo.txt', 'Sp.txt']
+loginCred = ['Ch_Insta_Cred.txt', 'Sp_Insta_Cred.txt']
+insta_username_files = ['Ch.txt', 'Sp.txt']
 
 for cred, u_names in zip(loginCred, insta_username_files):
     if file_exists('cache.txt'):
