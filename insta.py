@@ -234,9 +234,9 @@ def user_stories(username):
             # name += f'_{n}'
             name+='_'+reel['id'].split('_')[0]
 
-            # value = datetime.datetime.fromtimestamp(reel["taken_at"]).replace(tzinfo=tzoffset("UTC+1",0))
+            value = datetime.datetime.fromtimestamp(reel["taken_at"]).replace(tzinfo=tzoffset("UTC+1",0))
 
-            # name += f'_{value.strftime("%d-%m-%Y_%H-%M-%S")}'
+            name += f'_{value.strftime("%d-%m-%Y_%H-%M-%S")}'
             if 'location' in reel.keys():
                 # name += "_#" + reel["location"]["short_name"].replace(' ', '_')
                 name += "_#" + reel["location"]["name"]
